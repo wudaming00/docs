@@ -1,0 +1,96 @@
+---
+title: "Nestimate: Transparent Property Valuation"
+description: "Nestimate gives you a price range with honest confidence intervals and 5–8 reasoning bullets — not a single opaque number like Zestimate."
+---
+
+Nestimate is Nestlyze's glass-box property valuation. Where most AVM tools give you a single number with no explanation, Nestimate returns a price range with an explicit confidence level and 5 to 8 reasoning bullets that show exactly what drove the estimate — listing photos, comparable sales, condition signals, and school quality. You can see the inputs. You can disagree with the inputs. That's the point.
+
+## How Nestimate works
+
+Nestimate runs automatically for every property and is ready when you reach the valuation section of your report. The computation runs in parallel with the 6 domain agents so there is no extra wait time.
+
+The estimate is built from four inputs:
+
+<CardGroup cols={2}>
+  <Card title="VLM photo analysis" icon="camera">
+    Listing photos are analyzed by an AI vision model that identifies condition signals — updated kitchen, deferred exterior maintenance, new roof, dated fixtures — and adjusts the valuation accordingly. The number of photos analyzed is shown in the card metadata.
+  </Card>
+  <Card title="Comparable sales" icon="chart-line">
+    Recent closed transactions within 5 miles and 12 months are pulled and matched by property type. The comp engine weights neighbors by location and property characteristics. The number of comps used is shown in the card metadata.
+  </Card>
+  <Card title="Condition signals" icon="wrench">
+    Age of major systems, permit history, known deferred maintenance, and Physical agent findings all feed into condition adjustments. A 1985 home with an unreplaced roof is valued differently from the same home with a recent roof replacement.
+  </Card>
+  <Card title="School quality" icon="graduation-cap">
+    The assigned school GreatSchools ratings are factored in as a value driver. School quality is one of the strongest predictors of price per square foot at the sub-ZIP level in the Bay Area.
+  </Card>
+</CardGroup>
+
+When comparable sales are dense enough, a statistical model drives the estimate. When the area is thin on recent comps, Nestimate uses an AI reasoning approach that weighs the available signals explicitly and explains each step.
+
+## What you see
+
+The Nestimate card shows:
+
+- **Price range** — a low and high figure formatted as `$875K – $940K` or `$1.35M – $1.42M`. This is not a point estimate; the range reflects genuine uncertainty in the inputs.
+- **Confidence level** — High (emerald), Medium (blue), or Low (amber). High confidence means Nestimate had strong comp density and quality photos. Low confidence means you should weight the range less heavily.
+- **Asking price comparison** — when the home is listed, Nestimate shows the asking price and states whether the estimate is above, below, or in line with asking (threshold: ±1.5%). "In line" means within 1.5%; outside that, you see a percentage delta with a trending arrow.
+- **Reasoning bullets** — 5 to 8 plain-language sentences under "How we got here," each citing a specific input: a comp address, a photo observation, a condition signal, a school rating adjustment.
+  - **Methodology label** — the card footer shows whether the estimate used the statistical comp model or the AI reasoning path.
+
+## Accuracy example
+
+On a real 2022 sale in Newberry, FL:
+- Listed at **$556,000**
+- Sold at **$550,912**
+- Nestimate predicted **$545,000** — a **1.1% error**
+
+For context, Zillow's Zestimate has a published national median error of 1.9–2.4% for on-market homes and over 7% for off-market properties. Critically, Zestimate gives you a single number with no explanation; Nestimate gives you a range and tells you why.
+
+<Note>
+Nestlyze publishes cases we get right and wrong. A 1.1% miss is not universal — accuracy varies by data availability. Low-confidence Nestimate ranges are wider and should be treated accordingly.
+</Note>
+
+## Where Nestimate appears
+
+Nestimate is embedded in three places:
+
+1. **Property analysis reports** — Nestimate appears in the "Nestimate" section of every full report, between the executive summary and the domain cards. It uses the comparables and photos that the analysis pipeline already fetched, so there's no additional wait.
+
+2. **Listing detail pages** — when you open a listing from the browse view or the map, the listing detail page includes a Nestimate card alongside the property facts.
+
+3. **Recommendation cards** — homes in your AI-generated recommendation set include a Nestimate range when one is available, visible on the listing detail page you reach by clicking a recommendation card.
+
+## Regenerating a Nestimate
+
+Each Nestimate card has a refresh icon in the top-right corner. Clicking it re-runs the computation against fresh comparables and re-analyzes the photos. Regeneration is useful when:
+
+- The listing price has changed since the last run
+- New comparable sales have closed nearby
+- You want a second computation to sanity-check the range
+
+<Tip>
+If your Nestimate confidence is Low, check how many comps were used (shown in the card footer). Fewer than 3–4 comps in a 5-mile / 12-month window means the estimate is working with sparse data. Consider running an analysis on a nearby recently-sold property to see how Nestimate performs when more comparable data is available.
+</Tip>
+
+## Nestimate vs. Zillow Zestimate
+
+| | Nestimate | Zestimate |
+|---|---|---|
+| Output format | Price range | Single number |
+| Confidence shown | Yes — High / Medium / Low | No |
+| Reasoning shown | Yes — 5–8 bullets | No |
+| Photo analysis | Yes — Claude Vision | No |
+| School quality input | Yes | Limited |
+| Off-market accuracy | Degrades with conf. disclosure | ~7% median error, no disclosure |
+
+Zestimate is a useful quick signal. Nestimate is a tool you can interrogate — you can read the reasoning, disagree with a comp, and form your own view.
+
+<CardGroup cols={2}>
+  <Card title="Full property analysis" icon="file-search" href="/features/property-analysis">
+    Every Nestimate is embedded inside a full 6-agent property report.
+  </Card>
+  <Card title="Understanding your report" icon="book-open" href="/buying-guide/understanding-your-report">
+    Learn how to read each section of a Nestlyze report and act on the findings.
+  </Card>
+</CardGroup>

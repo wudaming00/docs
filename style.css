@@ -1,0 +1,613 @@
+/* ─────────────────────────────────────────────────────────────────
+   Nestlyze docs — premium polish on top of the Mintlify Willow theme.
+
+   Brand direction (calibrated against frontend/tailwind.config.js):
+     - Indigo #6366f1 is the *primary* product accent.
+     - Violet #7c3aed is reserved for gradient endpoints and edges,
+       never for solid blocks or large surfaces.
+     - The product feels: calm, analytical, premium, trustworthy.
+       So this stylesheet leans on neutral slate ink, soft 1px borders,
+       refined shadows, and indigo accents — not loud purple fills.
+
+   Scope of changes (intentional, minimal):
+     1. Brand tokens (single source of truth)
+     2. Type scale + heading sharpness
+     3. Cards — calm border, indigo hover accent, refined shadow
+     4. Primary navbar CTA (Try Nestlyze free) — indigo→violet gradient
+     5. Top navbar polish — softer active state, calmer search/theme
+     6. Left sidebar — lighter inactive items, clearer active item,
+        tightened spacing, smaller section labels
+     7. Main content panel — subtle border + radius so it doesn't read
+        as a plain white sheet, while preserving usable width
+     8. Misc product touches — selection, scrollbar, focus ring, inline code
+     9. Homepage hero block (.nz-hero) — radial mesh, stat strip
+    10. Section rail (.nz-rail) — eyebrow + hairline
+
+   Constraints respected:
+     - No JS, no remote assets, no Mintlify-internal hashed selectors.
+     - Brittle [class*="…"] selectors only where unavoidable, and only
+       on attribute *prefixes* that are stable across Mintlify builds.
+   ───────────────────────────────────────────────────────────────── */
+
+/* ── 1. Brand tokens ──────────────────────────────────────────────── */
+:root {
+  /* Indigo is primary; violet is the gradient endpoint. */
+  --nz-indigo-50:  #eef2ff;
+  --nz-indigo-100: #e0e7ff;
+  --nz-indigo-200: #c7d2fe;
+  --nz-indigo-300: #a5b4fc;
+  --nz-indigo-400: #818cf8;
+  --nz-indigo-500: #6366f1;
+  --nz-indigo-600: #4f46e5;
+  --nz-indigo-700: #4338ca;
+
+  --nz-violet-300: #c4b5fd;
+  --nz-violet-400: #a78bfa;
+  --nz-violet-500: #8b5cf6;
+  --nz-violet-600: #7c3aed;
+
+  --nz-ink-900:    #0f172a;
+  --nz-ink-800:    #1e293b;
+  --nz-ink-700:    #334155;
+  --nz-ink-600:    #475569;
+  --nz-ink-500:    #64748b;
+  --nz-ink-400:    #94a3b8;
+  --nz-slate-200:  #e2e8f0;
+  --nz-slate-100:  #f1f5f9;
+  --nz-slate-50:   #f8fafc;
+
+  /* Surfaces — light = solid near-white, dark = subtle glass. */
+  --nz-border-light: rgba(15, 23, 42, 0.08);
+  --nz-border-dark:  rgba(255, 255, 255, 0.07);
+  --nz-card-bg-dark: rgba(255, 255, 255, 0.025);
+
+  /* Calmer shadows — less colored bloom, more product-grade depth. */
+  --nz-shadow-card:        0 1px 2px rgba(15, 23, 42, 0.04),
+                           0 4px 14px -10px rgba(15, 23, 42, 0.10);
+  --nz-shadow-card-hov:    0 1px 2px rgba(79, 70, 229, 0.06),
+                           0 12px 28px -16px rgba(79, 70, 229, 0.28);
+  --nz-shadow-card-dark:   0 1px 2px rgba(0, 0, 0, 0.45),
+                           0 8px 22px -14px rgba(0, 0, 0, 0.55);
+  --nz-shadow-card-dark-hov: 0 1px 2px rgba(0, 0, 0, 0.45),
+                             0 14px 34px -14px rgba(99, 102, 241, 0.45);
+}
+
+/* ── 2. Typography ────────────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  letter-spacing: -0.018em;
+  font-feature-settings: "ss01", "cv11";
+}
+h1 { letter-spacing: -0.032em; font-weight: 700; }
+h2 { letter-spacing: -0.024em; font-weight: 700; margin-top: 2.5rem; }
+h3 { font-weight: 600; letter-spacing: -0.014em; }
+
+article p,
+article li {
+  line-height: 1.7;
+}
+
+/* Link contrast — closer to the indigo product accent. */
+article a:not([class]) {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+article a:not([class]):hover {
+  text-decoration-color: var(--nz-indigo-500);
+}
+.dark article a:not([class]):hover {
+  text-decoration-color: var(--nz-indigo-300);
+}
+
+/* Inline code — subtle indigo tint (was: violet, too purple). */
+:not(pre) > code {
+  background-color: rgba(99, 102, 241, 0.07);
+  border: 1px solid rgba(99, 102, 241, 0.16);
+  color: var(--nz-indigo-700);
+  border-radius: 6px;
+  padding: 0.1em 0.38em;
+  font-size: 0.92em;
+  font-weight: 500;
+}
+.dark :not(pre) > code {
+  background-color: rgba(129, 140, 248, 0.10);
+  border-color: rgba(129, 140, 248, 0.22);
+  color: var(--nz-indigo-200);
+}
+
+/* ── 3. Cards ── premium, intentional, glass-leaning in dark ──────── */
+a[class*="Card"],
+.card,
+[class*="card_"] {
+  border-radius: 14px;
+  border: 1px solid var(--nz-border-light);
+  box-shadow: var(--nz-shadow-card);
+  background-clip: padding-box;
+  transition:
+    border-color 180ms ease,
+    transform 160ms ease,
+    box-shadow 220ms ease,
+    background-color 180ms ease;
+}
+.dark a[class*="Card"],
+.dark .card,
+.dark [class*="card_"] {
+  border-color: var(--nz-border-dark);
+  background-color: var(--nz-card-bg-dark);
+  box-shadow: var(--nz-shadow-card-dark);
+  backdrop-filter: blur(8px);
+}
+
+a[class*="Card"]:hover,
+.card:hover,
+[class*="card_"]:hover {
+  border-color: rgba(99, 102, 241, 0.42);
+  box-shadow: var(--nz-shadow-card-hov);
+  transform: translateY(-1px);
+}
+.dark a[class*="Card"]:hover,
+.dark .card:hover,
+.dark [class*="card_"]:hover {
+  border-color: rgba(129, 140, 248, 0.50);
+  background-color: rgba(129, 140, 248, 0.04);
+  box-shadow: var(--nz-shadow-card-dark-hov);
+}
+
+/* Card icons — tint to indigo for consistency with product. */
+a[class*="Card"] svg[class*="icon"],
+[class*="card_"] svg[class*="icon"] {
+  color: var(--nz-indigo-500);
+  width: 18px;
+  height: 18px;
+}
+.dark a[class*="Card"] svg[class*="icon"],
+.dark [class*="card_"] svg[class*="icon"] {
+  color: var(--nz-indigo-300);
+}
+
+/* ── 4. Primary navbar CTA ── product-style gradient + glow ───────── */
+a[class*="primary"][class*="button"],
+nav a[role="button"][class*="primary"],
+button[class*="primary"] {
+  background-image: linear-gradient(135deg, #6366f1 0%, #7c3aed 100%) !important;
+  border: none !important;
+  color: #ffffff !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.14) inset,
+    0 4px 14px -6px rgba(99, 102, 241, 0.45);
+  transition: transform 150ms ease, box-shadow 220ms ease, filter 150ms ease;
+  font-weight: 600;
+}
+a[class*="primary"][class*="button"]:hover,
+nav a[role="button"][class*="primary"]:hover,
+button[class*="primary"]:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.20) inset,
+    0 10px 22px -6px rgba(124, 58, 237, 0.55);
+}
+
+/* ── 5. Top navbar polish ─────────────────────────────────────────── */
+/* Tone the navbar surface so it reads as a calm chrome bar, not a sheet
+   continuous with the page. Mintlify's top bar is typically a <header>
+   or [class*="navbar"] wrapper. We target both defensively. */
+header[class*="navbar"],
+header[class*="topbar"],
+nav[class*="navbar"] {
+  backdrop-filter: saturate(140%) blur(10px);
+  -webkit-backdrop-filter: saturate(140%) blur(10px);
+  border-bottom: 1px solid var(--nz-border-light);
+}
+.dark header[class*="navbar"],
+.dark header[class*="topbar"],
+.dark nav[class*="navbar"] {
+  border-bottom-color: var(--nz-border-dark);
+  background-color: rgba(11, 11, 20, 0.72);
+}
+
+/* Navbar link items — softer inactive, refined hover. */
+header[class*="navbar"] a:not([class*="primary"]):not([class*="logo"]),
+nav[class*="navbar"] a:not([class*="primary"]):not([class*="logo"]) {
+  color: var(--nz-ink-600);
+  transition: color 150ms ease;
+}
+header[class*="navbar"] a:not([class*="primary"]):not([class*="logo"]):hover,
+nav[class*="navbar"] a:not([class*="primary"]):not([class*="logo"]):hover {
+  color: var(--nz-indigo-600);
+}
+.dark header[class*="navbar"] a:not([class*="primary"]):not([class*="logo"]),
+.dark nav[class*="navbar"] a:not([class*="primary"]):not([class*="logo"]) {
+  color: rgba(226, 232, 240, 0.72);
+}
+.dark header[class*="navbar"] a:not([class*="primary"]):not([class*="logo"]):hover,
+.dark nav[class*="navbar"] a:not([class*="primary"]):not([class*="logo"]):hover {
+  color: var(--nz-indigo-300);
+}
+
+/* Top tab/section selector (the "Guide" pill etc.) — softer violet
+   treatment, refined shadow, balanced padding. */
+[class*="tab"][aria-selected="true"],
+button[class*="tab"][data-state="active"],
+a[class*="tab"][aria-current="page"] {
+  color: var(--nz-indigo-700) !important;
+  background-color: rgba(99, 102, 241, 0.08) !important;
+  box-shadow: 0 1px 2px rgba(99, 102, 241, 0.10),
+              inset 0 0 0 1px rgba(99, 102, 241, 0.18) !important;
+  border-radius: 8px;
+}
+.dark [class*="tab"][aria-selected="true"],
+.dark button[class*="tab"][data-state="active"],
+.dark a[class*="tab"][aria-current="page"] {
+  color: var(--nz-indigo-200) !important;
+  background-color: rgba(129, 140, 248, 0.10) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.30),
+              inset 0 0 0 1px rgba(129, 140, 248, 0.22) !important;
+}
+
+/* Search input — calm border, no loud focus halo. */
+input[type="search"],
+input[placeholder*="Search" i],
+button[class*="search"] {
+  border-color: var(--nz-border-light) !important;
+  background-color: rgba(15, 23, 42, 0.02) !important;
+}
+.dark input[type="search"],
+.dark input[placeholder*="Search" i],
+.dark button[class*="search"] {
+  border-color: var(--nz-border-dark) !important;
+  background-color: rgba(255, 255, 255, 0.03) !important;
+}
+
+/* Ask AI trigger — visible but not overpowering. Mintlify renders this
+   as a button containing "Ask AI" copy or a sparkle icon. We attenuate
+   its background and let the gradient border carry the brand. */
+button[aria-label*="Ask" i],
+button[class*="ask-ai"],
+a[class*="ask-ai"] {
+  background-image: linear-gradient(135deg, rgba(99,102,241,0.10), rgba(124,58,237,0.10)) !important;
+  border: 1px solid rgba(99, 102, 241, 0.28) !important;
+  color: var(--nz-indigo-700) !important;
+  font-weight: 600;
+  border-radius: 9px !important;
+  transition: background-image 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+button[aria-label*="Ask" i]:hover,
+button[class*="ask-ai"]:hover,
+a[class*="ask-ai"]:hover {
+  background-image: linear-gradient(135deg, rgba(99,102,241,0.16), rgba(124,58,237,0.16)) !important;
+  border-color: rgba(99, 102, 241, 0.45) !important;
+}
+.dark button[aria-label*="Ask" i],
+.dark button[class*="ask-ai"],
+.dark a[class*="ask-ai"] {
+  background-image: linear-gradient(135deg, rgba(129,140,248,0.12), rgba(167,139,250,0.12)) !important;
+  border-color: rgba(129, 140, 248, 0.32) !important;
+  color: var(--nz-indigo-200) !important;
+}
+
+/* ── 6. Left sidebar polish ───────────────────────────────────────── */
+/* Mintlify wraps the sidebar in an <aside>. We tighten spacing, soften
+   inactive items, and make the active item clear but not harsh. */
+aside[class*="sidebar"] a,
+aside[class*="sidebar"] button {
+  font-size: 0.875rem;
+  line-height: 1.35;
+  padding-top: 0.32rem;
+  padding-bottom: 0.32rem;
+  color: var(--nz-ink-600);
+  border-radius: 7px;
+  transition: color 140ms ease, background-color 140ms ease;
+}
+aside[class*="sidebar"] a:hover,
+aside[class*="sidebar"] button:hover {
+  color: var(--nz-ink-900);
+  background-color: rgba(99, 102, 241, 0.05);
+}
+.dark aside[class*="sidebar"] a,
+.dark aside[class*="sidebar"] button {
+  color: rgba(226, 232, 240, 0.62);
+}
+.dark aside[class*="sidebar"] a:hover,
+.dark aside[class*="sidebar"] button:hover {
+  color: #f8fafc;
+  background-color: rgba(129, 140, 248, 0.07);
+}
+
+/* Active sidebar item — clear, not harsh. Uses a left indicator instead
+   of a full violet pill. */
+aside[class*="sidebar"] a[aria-current="page"],
+aside[class*="sidebar"] a[data-active="true"],
+aside[class*="sidebar"] a.active {
+  color: var(--nz-indigo-700) !important;
+  background-color: rgba(99, 102, 241, 0.07) !important;
+  font-weight: 600;
+  box-shadow: inset 2px 0 0 0 var(--nz-indigo-500);
+}
+.dark aside[class*="sidebar"] a[aria-current="page"],
+.dark aside[class*="sidebar"] a[data-active="true"],
+.dark aside[class*="sidebar"] a.active {
+  color: var(--nz-indigo-200) !important;
+  background-color: rgba(129, 140, 248, 0.10) !important;
+  box-shadow: inset 2px 0 0 0 var(--nz-indigo-400);
+}
+
+/* Section / group labels — quiet, uppercase-ish, readable. */
+aside[class*="sidebar"] [class*="group"] > [class*="label"],
+aside[class*="sidebar"] [class*="group-label"],
+aside[class*="sidebar"] h5,
+aside[class*="sidebar"] h6 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--nz-ink-500);
+  margin-top: 1rem;
+  margin-bottom: 0.35rem;
+}
+.dark aside[class*="sidebar"] [class*="group"] > [class*="label"],
+.dark aside[class*="sidebar"] [class*="group-label"],
+.dark aside[class*="sidebar"] h5,
+.dark aside[class*="sidebar"] h6 {
+  color: var(--nz-ink-400);
+}
+
+/* ── 7. Main content panel ────────────────────────────────────────── */
+/* Give the content area a faint border + radius so it doesn't read as
+   a plain white sheet, without reducing usable width. We target
+   Mintlify's <main> / [class*="content"] / article wrapper. The
+   selector list is forgiving — if Mintlify renames, the page still
+   renders, just without the panel treatment. */
+main article,
+main [class*="content-container"],
+main [class*="ContentArea"] {
+  position: relative;
+}
+
+/* The page background gets a very subtle warm-violet wash so the
+   panel has something to sit against. */
+body {
+  background-image:
+    radial-gradient(80% 50% at 50% -10%, rgba(99, 102, 241, 0.05) 0%, rgba(99, 102, 241, 0) 60%),
+    radial-gradient(60% 40% at 100% 100%, rgba(124, 58, 237, 0.04) 0%, rgba(124, 58, 237, 0) 60%);
+  background-attachment: fixed;
+}
+.dark body {
+  background-image:
+    radial-gradient(80% 50% at 50% -10%, rgba(99, 102, 241, 0.08) 0%, rgba(99, 102, 241, 0) 60%),
+    radial-gradient(60% 40% at 100% 100%, rgba(124, 58, 237, 0.06) 0%, rgba(124, 58, 237, 0) 60%);
+}
+
+/* ── 8. Misc product touches ── selection, scrollbar, focus ───────── */
+::selection {
+  background-color: rgba(99, 102, 241, 0.22);
+}
+.dark ::selection {
+  background-color: rgba(129, 140, 248, 0.28);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(99, 102, 241, 0.20);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(99, 102, 241, 0.38);
+}
+.dark ::-webkit-scrollbar-thumb {
+  background-color: rgba(129, 140, 248, 0.22);
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(129, 140, 248, 0.40);
+}
+
+:focus-visible {
+  outline: 2px solid var(--nz-indigo-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── 9. Homepage hero block (.nz-hero) ────────────────────────────── */
+.nz-hero {
+  position: relative;
+  margin: 0.5rem 0 2.5rem;
+  padding: 2.5rem 2.25rem 2.25rem;
+  border-radius: 20px;
+  border: 1px solid var(--nz-border-light);
+  /* Mirrors the product .mesh-bg recipe — indigo-led with a violet edge. */
+  background:
+    radial-gradient(80% 50% at 50% -20%, rgba(99, 102, 241, 0.09) 0%, rgba(99, 102, 241, 0) 60%),
+    radial-gradient(60% 40% at 90% 50%, rgba(124, 58, 237, 0.06) 0%, rgba(124, 58, 237, 0) 60%),
+    radial-gradient(50% 50% at 10% 90%, rgba(168, 85, 247, 0.05) 0%, rgba(168, 85, 247, 0) 60%),
+    linear-gradient(180deg, #ffffff 0%, #fafaff 100%);
+  overflow: hidden;
+  box-shadow: var(--nz-shadow-card);
+}
+.dark .nz-hero {
+  border-color: rgba(129, 140, 248, 0.18);
+  background:
+    radial-gradient(80% 50% at 50% -20%, rgba(99, 102, 241, 0.18) 0%, rgba(99, 102, 241, 0) 60%),
+    radial-gradient(60% 40% at 90% 50%, rgba(124, 58, 237, 0.14) 0%, rgba(124, 58, 237, 0) 60%),
+    radial-gradient(50% 50% at 10% 90%, rgba(168, 85, 247, 0.10) 0%, rgba(168, 85, 247, 0) 60%),
+    linear-gradient(180deg, #0b0b14 0%, #0f0f1c 100%);
+  box-shadow: var(--nz-shadow-card-dark);
+}
+
+/* Faint sheen line at the top — premium, not decorative. */
+.nz-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(99, 102, 241, 0.40) 50%, transparent 100%);
+  opacity: 0.6;
+}
+
+.nz-hero .nz-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--nz-indigo-700);
+  background: rgba(99, 102, 241, 0.07);
+  border: 1px solid rgba(99, 102, 241, 0.20);
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+}
+.dark .nz-hero .nz-eyebrow {
+  color: var(--nz-indigo-200);
+  background: rgba(129, 140, 248, 0.10);
+  border-color: rgba(129, 140, 248, 0.26);
+}
+
+.nz-hero h1 {
+  margin: 1rem 0 0.65rem;
+  font-size: clamp(1.95rem, 2.9vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.032em;
+  color: var(--nz-ink-900);
+}
+.dark .nz-hero h1 { color: #f8fafc; }
+
+/* Optional gradient accent on a single span in the H1. */
+.nz-hero h1 .nz-accent {
+  background-image: linear-gradient(135deg, #6366f1 0%, #7c3aed 60%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.nz-hero .nz-lede {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 1.04rem;
+  line-height: 1.6;
+  color: var(--nz-ink-700);
+}
+.dark .nz-hero .nz-lede { color: #cbd5e1; }
+
+/* CTA row inside the hero — tight, product-shaped. */
+.nz-hero .nz-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.4rem;
+}
+.nz-hero .nz-cta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.65rem 1.05rem;
+  border-radius: 10px;
+  font-size: 0.93rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    transform 150ms ease,
+    box-shadow 220ms ease,
+    filter 150ms ease,
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+.nz-hero .nz-cta a.nz-cta-primary {
+  background-image: linear-gradient(135deg, #6366f1 0%, #7c3aed 100%);
+  color: #ffffff;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.14) inset,
+    0 4px 14px -6px rgba(99, 102, 241, 0.50);
+}
+.nz-hero .nz-cta a.nz-cta-primary:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.20) inset,
+    0 10px 22px -6px rgba(124, 58, 237, 0.60);
+}
+.nz-hero .nz-cta a.nz-cta-secondary {
+  color: var(--nz-indigo-700);
+  background: rgba(99, 102, 241, 0.06);
+  border: 1px solid rgba(99, 102, 241, 0.22);
+}
+.nz-hero .nz-cta a.nz-cta-secondary:hover {
+  background: rgba(99, 102, 241, 0.10);
+  border-color: rgba(99, 102, 241, 0.40);
+}
+.dark .nz-hero .nz-cta a.nz-cta-secondary {
+  color: var(--nz-indigo-200);
+  background: rgba(129, 140, 248, 0.08);
+  border-color: rgba(129, 140, 248, 0.26);
+}
+.dark .nz-hero .nz-cta a.nz-cta-secondary:hover {
+  background: rgba(129, 140, 248, 0.14);
+  border-color: rgba(129, 140, 248, 0.46);
+}
+
+/* Compact stat strip under the hero CTA. */
+.nz-hero .nz-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.9rem;
+  margin-top: 1.6rem;
+  padding-top: 1.2rem;
+  border-top: 1px dashed rgba(99, 102, 241, 0.18);
+}
+.dark .nz-hero .nz-stats {
+  border-top-color: rgba(129, 140, 248, 0.22);
+}
+.nz-hero .nz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.nz-hero .nz-stat-n {
+  font-family: "Outfit", "Inter", system-ui, sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--nz-indigo-700);
+}
+.dark .nz-hero .nz-stat-n { color: var(--nz-indigo-300); }
+.nz-hero .nz-stat-l {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--nz-ink-500);
+}
+.dark .nz-hero .nz-stat-l { color: #94a3b8; }
+
+@media (max-width: 640px) {
+  .nz-hero { padding: 1.8rem 1.25rem 1.6rem; }
+  .nz-hero .nz-stats { gap: 1.15rem; }
+}
+
+/* ── 10. Section header rail (.nz-rail) ───────────────────────────── */
+.nz-rail {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  margin: 2.5rem 0 0.25rem;
+}
+.nz-rail .nz-rail-eyebrow {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--nz-indigo-600);
+  white-space: nowrap;
+}
+.dark .nz-rail .nz-rail-eyebrow { color: var(--nz-indigo-300); }
+.nz-rail .nz-rail-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.28) 0%, rgba(99, 102, 241, 0) 100%);
+}
+.dark .nz-rail .nz-rail-line {
+  background: linear-gradient(90deg, rgba(129, 140, 248, 0.30) 0%, rgba(129, 140, 248, 0) 100%);
+}

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" role="img" aria-label="Nestlyze docs">
+  <defs>
+    <linearGradient id="nz-mark-light" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+  </defs>
+  <!-- Mark -->
+  <rect x="2" y="6" width="28" height="28" rx="7" fill="#0f172a"/>
+  <path d="M16 11 L7 19 L9 19 L9 28 L14 28 L14 23 L18 23 L18 28 L23 28 L23 19 L25 19 Z"
+        fill="none" stroke="url(#nz-mark-light)" stroke-width="1.6" stroke-linejoin="round"/>
+  <text x="16" y="26.5" text-anchor="middle" font-family="Inter, system-ui, sans-serif"
+        font-weight="800" font-size="11" fill="url(#nz-mark-light)">N</text>
+  <!-- Wordmark -->
+  <text x="40" y="26" font-family="Outfit, Inter, system-ui, sans-serif"
+        font-weight="700" font-size="18" letter-spacing="-0.5" fill="#0f172a">Nestlyze</text>
+  <text x="125" y="26" font-family="Inter, system-ui, sans-serif"
+        font-weight="500" font-size="14" letter-spacing="0" fill="#7c3aed">docs</text>
+</svg>

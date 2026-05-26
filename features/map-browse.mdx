@@ -1,0 +1,101 @@
+---
+title: "Browse and Filter Bay Area Listings on the Map"
+description: "Nestlyze's interactive map shows 3,000+ Bay Area listings with school ratings, price per sqft, and commute-time heatmap overlays — filter and explore visually."
+---
+
+The Nestlyze map shows over 3,000 Bay Area listings as an interactive layer alongside your shortlisted homes and your work location. Three optional heatmap overlays — school ratings, price per square foot, and commute isochrones — let you filter the geography visually before drilling into individual addresses. Every map pin links directly to a listing detail page where an Ask AI widget answers questions about that specific property.
+
+## Accessing the map and browse views
+
+- **Map view**: go to [nestlyze.com/map](https://nestlyze.com/map) — the full interactive Google Maps experience with all layer controls.
+- **Browse view**: go to [nestlyze.com/browse](https://nestlyze.com/browse) — a list-based view of the same listing pool with the same filter options, useful if you prefer scrolling to pinning.
+
+Both views pull from the same Bay Area listing database. No account is required.
+
+## What you see on the map
+
+The map opens centered on the Bay Area (default center: lat 37.45, lng -122.1, zoom 10). Three categories of markers appear:
+
+<CardGroup cols={3}>
+  <Card title="Full pool" icon="circle-dot">
+    All scraped Bay Area listings appear as small gray dots. At low zoom levels, nearby dots cluster into a count badge showing how many homes are in that area.
+  </Card>
+  <Card title="Your shortlist" icon="bookmark">
+    Homes you've saved appear as larger colored circles with your composite score printed inside. Color indicates score tier: emerald (80+), blue (65–79), amber (50–64), red (below 50).
+  </Card>
+  <Card title="Work location" icon="star">
+    Your work address from your onboarding profile appears as a violet star marker. If you have multiple work locations, each appears in a different color (violet, emerald, amber, pink) to match their commute isochrone layers.
+  </Card>
+</CardGroup>
+
+When shortlisted homes are on the map, straight-line distance polylines connect each home to your work location(s) in the matching color. Click any shortlist pin to see the address, score, and straight-line miles to each work location in an info window.
+
+## Available filters
+
+### Layer toggles
+
+Click any layer chip in the toolbar above the map to enable that overlay:
+
+<AccordionGroup>
+  <Accordion title="School ratings heatmap">
+    Toggle **School ratings** to overlay colored zones across the map. Each zone corresponds to a cluster of listings that share a top-rated school, colored by rating tier: emerald (9–10/10), blue (7–8/10), amber (5–6/10), red (below 5/10). Click any zone to see the school name, level, rating, and number of listings inside.
+
+    <Warning>
+    The school ratings layer shows approximate zones based on which listings share a highly-rated school — not official district attendance boundaries. Verify school assignment with the district before making an offer.
+    </Warning>
+  </Accordion>
+  <Accordion title="Price per sqft choropleth">
+    Toggle **Price density** to color each ZIP code by median price per square foot, divided into five quintiles (cool blue = cheapest quintile, dark red = most expensive). Click any ZIP to see its median $/sqft, median price, and listing count. A color legend with dollar thresholds appears below the layer controls.
+  </Accordion>
+  <Accordion title="Commute isochrones (15/30/45 min)">
+    Toggle **Commute** to draw drive-time rings from your work location(s). Three concentric polygons show the areas reachable in 15, 30, and 45 minutes, using real road networks and historical traffic data. Inner rings are more opaque; outer rings fade so overlapping zones from multiple work locations remain readable.
+
+    When the commute layer is active, a dropdown lets you choose the traffic profile: **AM peak (8am)**, **PM peak (6pm)**, or **Off-peak**. The isochrone shapes change significantly between peak and off-peak — use AM peak when your commute is in the morning, PM peak for the return trip.
+
+    <Note>
+    The commute layer requires a work location from your onboarding profile. If you haven't completed onboarding, the layer chip is grayed out. Go to [nestlyze.com/onboard](https://nestlyze.com/onboard) to set your work address.
+    </Note>
+  </Accordion>
+</AccordionGroup>
+
+## Clicking a pin to open listing detail
+
+Click any gray dot in the full pool to open a small info window showing the address, bed/bath/sqft summary, price, and two action links:
+
+- **View details →** — opens the full listing detail page at `/listing/{id}`
+- **Show school zones** — draws the official school attendance boundaries for that specific address directly on the map (see below)
+
+Click a shortlist pin to see the address, composite score, score label, and straight-line commute distance.
+
+## School attendance boundary visualization
+
+The **Show school zones** button in any listing's info window fetches the real attendance boundaries for that address — elementary, middle, and high school — from the SchoolDigger database and draws them as colored polygons:
+
+| Color | Level |
+|-------|-------|
+| Emerald | Elementary |
+| Blue | Middle |
+| Violet | High |
+
+Each school's own location is marked with a lettered dot (E, M, H) colored to match its polygon. A panel below the map controls shows the school names and their ratings out of 10. Click **Clear zones** to remove the polygons.
+
+<Tip>
+Use attendance zone visualization to verify school assignment before shortlisting a home. In many Bay Area cities, homes on opposite sides of a street fall in different attendance zones for the same school level.
+</Tip>
+
+This is distinct from the school ratings heatmap layer — the heatmap shows approximate cluster-based zones for discovery; the attendance boundary visualization shows the specific, legally accurate polygon for one address.
+
+## The Ask AI widget on listing cards
+
+When you open a listing detail page from a map pin or the browse view, an **Ask AI** widget appears on the page. Type any question about that specific property — "Is this in a flood zone?", "What's the school rating here?", "How far is this from Caltrain?" — and the AI answers using the listing's data, location signals, and any analysis already run on the address.
+
+The Ask AI widget is available on all listing detail pages without running a full analysis first. If you want the complete 6-agent report for the address, click **Run full analysis** on the listing page.
+
+<CardGroup cols={2}>
+  <Card title="AI recommendations" icon="compass" href="/features/ai-recommendations">
+    Let Nestlyze pick 24 Bay Area homes matched to your priorities, instead of browsing manually.
+  </Card>
+  <Card title="Property analysis" icon="file-search" href="/features/property-analysis">
+    Run a full 6-agent report on any address you find on the map.
+  </Card>
+</CardGroup>

@@ -1,0 +1,90 @@
+{
+  "projectType": "saas",
+  "projectName": "Nestlyze",
+  "projectDescription": "Nestlyze is an AI buyer's agent for US homebuyers that delivers personalized home recommendations, transparent property valuations, and 6-expert deep-dive analysis reports.",
+  "theme": "willow",
+  "primaryColor": "#b8a9e6",
+  "lightColor": "#848484",
+  "darkColor": "#100f12",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guide",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "account-setup"
+            ]
+          },
+          {
+            "group": "Core Features",
+            "pages": [
+              "features/ai-recommendations",
+              "features/property-analysis",
+              "features/nestimate",
+              "features/compare",
+              "features/map-browse"
+            ]
+          },
+          {
+            "group": "Buying Guide",
+            "pages": [
+              "buying-guide/process-overview",
+              "buying-guide/understanding-your-report",
+              "buying-guide/offer-strategy",
+              "buying-guide/costs-explained"
+            ]
+          },
+          {
+            "group": "Account & Credits",
+            "pages": [
+              "account/credits-pricing",
+              "account/profile-settings",
+              "account/sharing-reports"
+            ]
+          },
+          {
+            "group": "FAQ",
+            "pages": [
+              "faq/general",
+              "faq/data-accuracy",
+              "faq/coverage"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "AI onboarding chat that builds a buyer profile in 2 minutes",
+    "24 personalized home recommendations with narrative explanations",
+    "6-agent deep property analysis (Financial, Market, Physical, Environmental, Neighborhood, Legal)",
+    "Nestimate: transparent glass-box property valuation with reasoning bullets",
+    "Side-by-side AI comparison of shortlisted homes",
+    "Interactive map with school, price, and commute heatmap layers",
+    "Multi-language support (English, Chinese, Spanish)",
+    "Report sharing and public library opt-in",
+    "School attendance boundary lookup accurate to the polygon",
+    "Credit-based pricing with free first analysis"
+  ],
+  "publicApiSurface": [
+    "POST /api/v1/analyze — submit address for deep analysis",
+    "WS /api/v1/analyze/stream/{job_id} — stream analysis progress events",
+    "GET /api/v1/report/{job_id} — retrieve completed analysis report",
+    "POST /api/v1/recommend — get personalized home recommendations",
+    "POST /api/v1/nestimate/compute — compute Nestimate valuation for an address",
+    "POST /api/v1/compare — AI side-by-side comparison of 2-3 reports",
+    "GET /api/v1/listings — browse listing pool",
+    "GET /api/v1/listings/{id} — get listing details with enrichment",
+    "POST /api/v1/match/score — get profile match score for a property",
+    "POST /api/v1/profile/start — start onboarding chat session",
+    "POST /api/v1/auth/register — create user account",
+    "POST /api/v1/auth/login — authenticate user",
+    "GET /api/v1/auth/google — Google OAuth login",
+    "POST /api/v1/translate — translate a report to another language",
+    "GET /api/v1/schools/{slug} — school zone data"
+  ]
+}

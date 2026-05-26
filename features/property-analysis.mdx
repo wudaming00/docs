@@ -1,0 +1,109 @@
+---
+title: "6-Expert AI Property Analysis in Under 2 Minutes"
+description: "Enter any US residential address and Nestlyze runs 6 parallel AI domain agents — Financial, Market, Physical, Environmental, Neighborhood, Legal."
+---
+
+Enter any US residential address on the Nestlyze home screen and within two minutes you receive a structured report from six AI domain agents that ran in parallel. Each agent focuses on one area of expertise; a synthesizer then weighs their findings into a single composite score (0–100) with an executive summary and a ranked list of next steps. The result is the due-diligence depth that typically takes a buyer weeks to assemble — compressed into a single read.
+
+## Submitting an address
+
+<Steps>
+  <Step title="Type or paste the full street address">
+    Start typing on the Nestlyze home screen. The address field uses Google Places autocomplete to suggest matching US residential addresses. Select a suggestion to populate the full address including city, state, and ZIP.
+  </Step>
+  <Step title="Click Analyze">
+    Nestlyze geocodes the address, checks that it's a residential property, and launches the 6 domain agents in parallel. A live progress indicator shows which agents are running.
+  </Step>
+  <Step title="Read your report">
+    The report loads in under 2 minutes for most addresses. If you've analyzed this address before, a cached version loads in roughly 10 seconds with a banner showing the report age. You can re-run fresh at any time (uses 1 credit).
+  </Step>
+</Steps>
+
+<Info>
+Your first analysis is free. Subsequent reports use credits. See [account/credits-pricing](/account/credits-pricing) for current pricing.
+</Info>
+
+## The 6 domain agents
+
+The agents run in parallel — not sequentially — so the total analysis time doesn't compound.
+
+<AccordionGroup>
+  <Accordion title="Financial — cost projections, insurance, and taxes">
+    The Financial agent models the true cost of ownership beyond the listing price. It estimates monthly mortgage payment at current rates, annual property tax (including California Prop 19 reassessment triggers and Mello-Roos CFD surcharges where applicable), homeowner's insurance based on fire and flood risk, HOA fees, and projected maintenance costs derived from the home's age and condition signals. It also flags listing red flags — phrases like "investor special," "cash only," or "needs TLC" that correlate with large hidden repair bills.
+  </Accordion>
+  <Accordion title="Market — comparable sales and pricing signals">
+    The Market agent pulls recent comparable sales within a relevant radius and time window, analyzes price-per-square-foot trends for the sub-region, and assesses whether the asking price is justified. It surfaces days-on-market data, price-reduction history, and how this listing compares to its nearest neighbors. If the home is priced above or below comparable closed sales, the agent explains the gap rather than just flagging it.
+  </Accordion>
+  <Accordion title="Physical — condition, permit flags, and age">
+    The Physical agent reviews the home's construction age and known system lifespans (roof, HVAC, water heater, electrical panel) to estimate upcoming capital expenditures. It checks public permit records for unpermitted additions, open permits, or code violations that could complicate financing or a future sale. Listing photos are analyzed via Claude Vision to surface condition signals — water stains, deferred maintenance, or cosmetic staging that might mask structural issues.
+  </Accordion>
+  <Accordion title="Environmental — flood, fire, earthquake, and air quality">
+    The Environmental agent checks FEMA flood zone designation (Special Flood Hazard Area vs. Zone X), Cal Fire wildfire hazard severity, USGS earthquake fault proximity, OpenAQ air quality index, EPA Superfund site proximity (flagged within 5 miles), and California contamination site proximity (underground storage tanks and cleanup sites) for California properties. FEMA disaster declarations for the county over the past 10 years are also surfaced.
+  </Accordion>
+  <Accordion title="Neighborhood — walkability, transit, and schools">
+    The Neighborhood agent pulls Walk Score, Transit Score, and BART station distance. It looks up GreatSchools ratings for the assigned elementary, middle, and high school — verified against school attendance boundary polygons, not just nearest-school proximity. Crime data from FBI and Census ACS demographics round out the neighborhood picture. This agent also checks for airport, highway, railway, landfill, and wastewater facility proximity using OpenStreetMap data.
+  </Accordion>
+  <Accordion title="Legal — title signals, HOA flags, and code violations">
+    The Legal agent reviews available public records for title defects, deed restrictions, and easements. It checks HOA financial health signals and flags histories of special assessments. Open code violations, zoning non-conformances, and any indication of litigation involving the property or its HOA are surfaced here. This agent does not provide legal advice — it surfaces signals that warrant follow-up with a title company or real estate attorney.
+  </Accordion>
+</AccordionGroup>
+
+## The composite score
+
+After all 6 agents complete, a synthesizer agent reads every domain report and produces a single **composite score from 0 to 100**. The score is displayed as a large number with color coding:
+
+| Score range | Verdict |
+|-------------|---------|
+| 85–100 | Exceptional fit — strong case to proceed |
+| 75–84 | Solid home — no material concerns |
+| 65–74 | Worth pursuing with specific checks |
+| 50–64 | Real concerns — read carefully before offering |
+| Below 50 | Significant red flags |
+
+A radar chart shows each domain's individual score so you can see at a glance which areas are strong and which need attention.
+
+## Deal-breaker banners
+
+Certain findings are classified as **hard stops** — confirmed issues severe enough that the composite score is capped at 40 regardless of other positive signals. Hard stops include confirmed title defects, active code violations that affect habitability, and evidence of HOA insolvency. When a hard stop is present, a red banner appears at the top of the report with a plain-language explanation of the specific finding.
+
+<Warning>
+A hard stop does not mean the home is unpurchaseable — it means there is a confirmed issue requiring resolution before the purchase can close safely. Consult a title company and real estate attorney before proceeding on any hard-stop property.
+</Warning>
+
+Hard stops are distinct from high-risk flags (shown in red but without score capping) and moderate risks (collapsed by default in an amber section).
+
+## The synthesizer summary and next steps
+
+Below the score, the synthesizer produces:
+
+- **Executive summary** — an honest assessment of the property written for a buyer, not a seller. The first sentence delivers the directional verdict; subsequent paragraphs address the most important findings from each domain.
+- **Recommendation** — a single paragraph translating the data into a clear stance: proceed, proceed with conditions, or pass.
+- **What's good / What's bad** — two side-by-side panels surfacing the top 5 pros and top 5 cons extracted from across all domain reports, sorted by severity.
+- **Due diligence checklist** — numbered items labeled CRITICAL, HIGH, or CHECK, each corresponding to a specific finding that warrants action before making an offer.
+- **Next steps** — an ordered action list (schedule inspection, verify school assignment, request HOA financials, etc.) tailored to this specific property's risk profile.
+
+## Fresh vs. cached reports
+
+Nestlyze caches reports by normalized address. When you submit an address that was analyzed before, the cached report loads immediately. A banner appears at the top when the cached report is more than 14 days old, warning that listing price, status, or environmental data may have changed.
+
+<Steps>
+  <Step title="Read the age banner">
+    If the banner shows the report is stale (14+ days old), review the freshness date before acting on the findings.
+  </Step>
+  <Step title="Click Run fresh">
+    Clicking **Run fresh** in the banner re-runs all 6 agents against current data sources. This consumes 1 credit.
+  </Step>
+</Steps>
+
+<Tip>
+For a home you're seriously considering, always run a fresh report within a few days of making an offer. Listing status, price, and environmental risk data can change quickly.
+</Tip>
+
+<CardGroup cols={2}>
+  <Card title="Nestimate valuation" icon="calculator" href="/features/nestimate">
+    Every report includes a Nestimate — a transparent price range with confidence level and reasoning bullets.
+  </Card>
+  <Card title="Compare this home" icon="scale-balanced" href="/features/compare">
+    Save this report to your shortlist and compare it side by side with other homes.
+  </Card>
+</CardGroup>

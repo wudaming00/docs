@@ -1,0 +1,94 @@
+---
+title: "Personalized Home Recommendations from AI"
+description: "Nestlyze's AI buyer's agent learns your priorities in a 2-minute chat and picks 24 matched homes with narrative explanations for each."
+---
+
+After a 2-minute onboarding chat, Nestlyze's AI buyer's agent picks 24 Bay Area homes matched to your life — including neighborhoods a local agent would never show you. Every card explains in plain prose why that specific home fits your stated priorities, so you spend time touring homes that make sense instead of scrolling through hundreds of irrelevant listings.
+
+## How the onboarding chat builds your profile
+
+The chat collects the facts the AI needs to rank homes for you. It asks about commute destinations and acceptable travel time, budget range and flexibility, the number of bedrooms and bathrooms you need, school district priorities, and lifestyle preferences like walkability and lot size. As you answer, a confidence indicator fills in — the more you share, the tighter the match.
+
+<Note>
+Your profile is encrypted at rest and is never shared with sellers, listing agents, or any third party. No human at Nestlyze reads individual profiles.
+</Note>
+
+You can start the chat at [nestlyze.com/onboard](https://nestlyze.com/onboard). If you close the browser mid-session, your anonymous session token is stored locally so you can pick up where you left off.
+
+## The 24-recommendation result set
+
+Once your profile is complete, Nestlyze selects exactly 24 homes drawn from across the Bay Area listing pool. The result set is designed to be usable immediately — not a ranked feed of thousands.
+
+<CardGroup cols={2}>
+  <Card title="AI match narrative" icon="sparkles">
+    Each home card shows a 2-sentence prose explanation — generated specifically for your buyer profile — of why this home fits your priorities. It appears under an "AI match" label with a violet left bar so it reads as your agent speaking, not as generic marketing copy.
+  </Card>
+  <Card title="Fit score and breakdown" icon="chart-bar">
+    A color-coded fit score (0–100) sits in the top-right corner of every card. Emerald (80+) means a strong match; blue (65–79) is good; amber (50–64) has specific concerns; below 50 suggests a weaker match. Below the narrative, small chips show the individual factor scores — Budget, Schools, Commute, and others — so you can see exactly what drove the overall number.
+  </Card>
+</CardGroup>
+
+### What each card shows
+
+- **Price** formatted as `$1.2M` or `$875K` for readability
+- **Beds, baths, and square footage**
+- **Commute time** to your work location in minutes, shown as a pill in the lower-right corner of the photo
+- **Region label** overlaid on the photo so you can orient quickly
+- A **NEW AREA** badge (amber, star icon) on homes in regions outside your usual search area
+
+## Cluster insight: regions explored and action items
+
+Below the home grid, Nestlyze surfaces two useful outputs:
+
+**Regions explored** lists every sub-region included in your 24 results, each with a one-liner describing the neighborhood character. This helps you understand at a glance which parts of the Bay Area were searched on your behalf.
+
+**Next moves** (labeled "Action items") is a short ordered list of concrete steps the AI recommends based on your profile and the results — for example, scheduling tours in a specific area, verifying school assignment for a shortlisted address, or adjusting your budget ceiling.
+
+## Filtering, sorting, and adjusting match weights
+
+### Filter by region
+
+When your results span multiple regions, a filter toolbar appears above the grid. Click any region chip to see only homes from that area; click it again or click "All regions" to return to the full set. Novel-region chips have amber styling to distinguish them.
+
+### Sort options
+
+Use the sort dropdown to reorder your results:
+
+| Sort option | Description |
+|-------------|-------------|
+| Best match | Default — highest fit score first |
+| Price ↑ | Lowest asking price first |
+| Price ↓ | Highest asking price first |
+| Newest | Most recently built first |
+| Largest | Highest square footage first |
+
+### Adjust match weights
+
+Click **Adjust match weights** to expand a set of sliders — one per scoring factor. Drag any slider to increase or decrease how much that factor counts. After a 500 ms debounce, Nestlyze silently re-fetches the full 24-home set using your updated weights. The AI re-picks from the pool rather than just reordering the existing cards, so you see genuinely different homes when you shift a priority. Click **Reset to default** to return to the backend's original weight profile.
+
+<Tip>
+If commute time matters more than square footage, drag the Commute slider up and the Sqft slider down. The rescored set typically surfaces homes in closer-in neighborhoods that wouldn't rank as highly on pure size.
+</Tip>
+
+## Novel region discovery
+
+Homes tagged "NEW AREA" come from regions outside the neighborhoods you mentioned during onboarding. The AI includes these deliberately — local agents tend to recommend only the areas they know, which skews buyers toward the same over-bid pockets. Novel-region results let you discover sub-regions that fit your numeric criteria even if you hadn't considered them.
+
+<Info>
+Novel regions are highlighted with amber card borders and a star chip so you can distinguish them from your expected search area at a glance.
+</Info>
+
+## Coverage
+
+The recommendation pool currently covers the **San Francisco Bay Area**: San Jose, Oakland, Fremont, Sunnyvale, Palo Alto, Berkeley, and surrounding cities — over 3,000 active and recently sold listings. Nationwide expansion to Austin, Seattle, New York metro, and Miami is in progress.
+
+Single-address deep analysis works nationwide today. If you already have an address in mind, run a full property report from the home screen.
+
+<CardGroup cols={2}>
+  <Card title="Run a property report" icon="file-search" href="/features/property-analysis">
+    Deep-dive any US residential address with 6 parallel AI domain agents.
+  </Card>
+  <Card title="Compare shortlisted homes" icon="scale-balanced" href="/features/compare">
+    Add recommendations to your shortlist and compare up to 3 side by side.
+  </Card>
+</CardGroup>

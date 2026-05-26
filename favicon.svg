@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="7" fill="#09090b"/>
+  <!-- House roof -->
+  <path d="M16 5 L6 14 L8 14 L8 25 L14 25 L14 19 L18 19 L18 25 L24 25 L24 14 L26 14 Z" 
+        fill="none" stroke="url(#g)" stroke-width="1.5" stroke-linejoin="round"/>
+  <!-- N inside house -->
+  <text x="16" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="800" font-size="13" fill="url(#g)">N</text>
+</svg>

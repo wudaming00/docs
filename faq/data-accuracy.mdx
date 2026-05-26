@@ -1,0 +1,72 @@
+---
+title: "Nestlyze Data Sources and Analysis Accuracy"
+description: "Learn where Nestlyze's property data comes from, how accurate the Nestimate valuation is, and what data signals each AI agent uses."
+---
+
+Nestlyze pulls from a range of public data sources, property APIs, and AI-driven extraction. Every data point in a report cites its source so you can verify the reasoning yourself. Below are answers to the most common questions about where the data comes from and how reliable it is.
+
+<AccordionGroup>
+  <Accordion title="How accurate is Nestimate?">
+    Nestimate is Nestlyze's glass-box valuation model. It combines photo analysis, comparable sales, condition signals from listing text and images, and school quality into a price range with an explicit confidence level. Every number includes 5–8 reasoning bullets explaining what drove it.
+
+    On a real 2022 sale in Newberry, FL: the listing price was $556,000, the final sale price was $550,912, and Nestimate predicted $545,000 — **1.1% off the actual sale price**.
+
+    For context, Zillow's Zestimate has a national median error of 1.9–2.4% for on-market homes and 7%+ for off-market properties. The key difference with Nestimate is transparency: you can see exactly which factors drove the estimate and form your own judgment about how much weight to give each one.
+
+    Nestlyze publishes cases it gets right and wrong at [nestlyze.com/cases](https://nestlyze.com/cases).
+  </Accordion>
+
+  <Accordion title="Where does Nestlyze get its hazard data?">
+    Hazard signals are pulled from official government sources:
+
+    - **Flood risk** — FEMA National Flood Hazard Layer. Every address is checked against FEMA flood zone designations. Zones AE, AO, A, and VE indicate Special Flood Hazard Areas requiring flood insurance on federally-backed mortgages.
+    - **Earthquake risk** — USGS seismic hazard maps.
+    - **Wildfire risk** — Cal Fire Fire Hazard Severity Zone (FHSZ) designations for California properties.
+    - **Air quality** — OpenAQ historical air quality data.
+
+    These data sources are fetched fresh for each analysis, not served from a static cache.
+  </Accordion>
+
+  <Accordion title="Where do school ratings come from?">
+    School ratings come from the GreatSchools API, which aggregates state test scores, student progress measures, and equity data into a 1–10 rating.
+
+    School attendance boundaries — the actual geographic polygon that determines which school a given address is assigned to — come from the federal School Attendance Boundary Survey dataset. Nestlyze performs precise geographic lookups against these boundaries to determine the specific school your address is zoned for, rather than just listing nearby schools.
+
+    This distinction matters: two houses on the same block can be in different school districts, and "nearest schools" lists are frequently wrong.
+  </Accordion>
+
+  <Accordion title="How current is the listing data?">
+    Listings in the Nestlyze pool are scraped regularly and marked with a freshness timestamp. Any listing that has not been refreshed within 14 days is marked as potentially stale.
+
+    The Dashboard's **What's new** section surfaces listings added or refreshed within the past 7 days, so you can see recently active inventory at a glance.
+  </Accordion>
+
+  <Accordion title="What walk and transit score data is used?">
+    Walk Score, Transit Score, and Bike Score are sourced from the Walk Score API. These scores appear on listing cards and in the neighborhood section of each deep analysis report.
+
+    Walk Score measures how many daily errands can be completed on foot on a 0–100 scale. A score of 90–100 is a Walker's Paradise; below 50 is car-dependent. In Bay Area markets, each point on the Walk Score scale correlates to roughly $500–$3,000 in home value.
+  </Accordion>
+
+  <Accordion title="Does Nestlyze consider race, demographics, or protected class data?">
+    No. Nestlyze explicitly prohibits its AI models from reasoning over any protected class information or demographic proxies.
+
+    The system prompt for every agent includes Fair Housing Act guardrails that forbid referencing or inferring race, religion, national origin, family status, disability, sex, or proxies for these characteristics such as "family-oriented neighborhood" or "young professionals area."
+
+    Every explanation in a Nestlyze report cites housing factors only: price, comparable sales, school ratings (by test score, not demographics), commute times, physical condition, and climate risk.
+  </Accordion>
+
+  <Accordion title="How are comparable sales found?">
+    Comparable sales (comps) are identified through a combination of web search and AI extraction, plus Redfin sold listings data. The Market agent searches for recent sales of similar properties — matching on size, bedrooms, bathrooms, condition, and proximity — and uses Claude to extract the relevant data points.
+
+    The comps are then used both to benchmark the listing price and to build the Nestimate valuation range. The agent's report section shows which comps were used and how each one informed the estimate.
+  </Accordion>
+</AccordionGroup>
+
+<CardGroup cols={2}>
+  <Card title="General FAQ" icon="circle-help" href="/faq/general">
+    Answers to common questions about Nestlyze, pricing, and how it works.
+  </Card>
+  <Card title="Coverage and availability" icon="map" href="/faq/coverage">
+    Which cities and states Nestlyze supports today.
+  </Card>
+</CardGroup>

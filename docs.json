@@ -1,0 +1,167 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "name": "Nestlyze",
+  "theme": "willow",
+  "colors": {
+    "primary": "#6366f1",
+    "light": "#a5b4fc",
+    "dark": "#818cf8"
+  },
+  "favicon": "/favicon.svg",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://nestlyze.com"
+  },
+  "fonts": {
+    "heading": {
+      "family": "Outfit",
+      "weight": 700
+    },
+    "body": {
+      "family": "Inter",
+      "weight": 400
+    }
+  },
+  "appearance": {
+    "default": "system"
+  },
+  "background": {
+    "decoration": "grid"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Product",
+        "href": "https://nestlyze.com"
+      },
+      {
+        "label": "Blog",
+        "href": "https://nestlyze.com/blog"
+      },
+      {
+        "label": "Contact",
+        "href": "mailto:hello@nestlyze.com"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Try Nestlyze free",
+      "href": "https://nestlyze.com"
+    }
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/nestlyze",
+      "linkedin": "https://www.linkedin.com/company/nestlyze",
+      "reddit": "https://www.reddit.com/r/nestlyze"
+    },
+    "links": [
+      {
+        "header": "Product",
+        "items": [
+          { "label": "Browse homes", "href": "https://nestlyze.com/browse" },
+          { "label": "Talk to agent", "href": "https://nestlyze.com/onboard" },
+          { "label": "Case studies", "href": "https://nestlyze.com/cases" }
+        ]
+      },
+      {
+        "header": "Company",
+        "items": [
+          { "label": "Why Nestlyze", "href": "https://nestlyze.com/about" },
+          { "label": "Blog", "href": "https://nestlyze.com/blog" },
+          { "label": "Contact", "href": "mailto:hello@nestlyze.com" }
+        ]
+      },
+      {
+        "header": "Legal",
+        "items": [
+          { "label": "Privacy", "href": "https://nestlyze.com/privacy" },
+          { "label": "Terms", "href": "https://nestlyze.com/terms" }
+        ]
+      }
+    ]
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guide",
+        "groups": [
+          {
+            "group": "Start here",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "account-setup"
+            ]
+          },
+          {
+            "group": "Core features",
+            "pages": [
+              "features/ai-recommendations",
+              "features/property-analysis",
+              "features/nestimate",
+              "features/compare",
+              "features/map-browse"
+            ]
+          },
+          {
+            "group": "Buying guide",
+            "pages": [
+              "buying-guide/process-overview",
+              "buying-guide/understanding-your-report",
+              "buying-guide/offer-strategy",
+              "buying-guide/costs-explained"
+            ]
+          },
+          {
+            "group": "Account & credits",
+            "pages": [
+              "account/credits-pricing",
+              "account/profile-settings",
+              "account/sharing-reports"
+            ]
+          },
+          {
+            "group": "FAQ",
+            "pages": [
+              "faq/general",
+              "faq/data-accuracy",
+              "faq/coverage"
+            ]
+          }
+        ]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Try Nestlyze",
+          "href": "https://nestlyze.com",
+          "icon": "house"
+        },
+        {
+          "anchor": "Browse homes",
+          "href": "https://nestlyze.com/browse",
+          "icon": "magnifying-glass"
+        },
+        {
+          "anchor": "Pricing",
+          "href": "https://nestlyze.com/pricing",
+          "icon": "coins"
+        }
+      ]
+    }
+  },
+  "styling": {
+    "codeblocks": "dark",
+    "eyebrows": "breadcrumbs"
+  },
+  "seo": {
+    "metatags": {
+      "og:site_name": "Nestlyze Docs",
+      "theme-color": "#6366f1"
+    },
+    "indexing": "navigable"
+  }
+}

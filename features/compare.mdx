@@ -1,0 +1,102 @@
+---
+title: "Compare Your Shortlisted Homes Side by Side"
+description: "Add up to 3 homes to your Nestlyze shortlist and get an AI-generated comparison covering scores, features, tradeoffs, and a recommendation."
+---
+
+When you're weighing two or three homes simultaneously, Nestlyze's Compare feature runs an AI analysis across all of them at once and returns a structured verdict: a dimension-by-dimension breakdown, a natural-language summary of how the homes differ, and a plain recommendation — either naming the stronger fit or explaining exactly what factors should drive your decision.
+
+## Adding homes to your shortlist
+
+Your shortlist holds the homes you want to keep in view. You can add a home from any of three places:
+
+<Steps>
+  <Step title="From a property analysis report">
+    Open a full report for any address. In the top navigation bar, click the bookmark icon (labeled "Save to compare"). The icon turns violet and shows a checkmark when the home is saved.
+  </Step>
+  <Step title="From a recommendation card">
+    Open a home from your AI recommendations. The same bookmark icon appears in the report header. Click it to add to your shortlist.
+  </Step>
+  <Step title="From a listing detail page">
+    On any listing detail page reached from the map or browse view, click the bookmark icon in the header to save the home.
+  </Step>
+</Steps>
+
+Your shortlist holds up to 30 homes. If you hit that limit, saving a new home removes the oldest entry and shows a warning. The AI comparison view works with 2 or 3 homes selected from the shortlist — not all 30.
+
+<Note>
+Your shortlist is stored in your browser's local storage — no account is required to use it. If you sign up, Nestlyze syncs your shortlist to the server so it follows you across devices and survives clearing browser storage.
+</Note>
+
+## Navigating to the compare view
+
+Go to [nestlyze.com/compare](https://nestlyze.com/compare). You'll see all homes currently in your shortlist as cards. Each card shows the composite score, address, score label, and any notes you've added.
+
+If your shortlist is empty, the page prompts you to analyze a home first.
+
+## Selecting homes to compare
+
+Click any card to select it for comparison (the card border turns violet). Select 2 or 3 homes, then click the **Compare** button. You can't compare more than 3 at once — the AI comparison degrades in quality with more homes because the context is split too many ways.
+
+<Tip>
+You can also add per-home notes before running the comparison. Click the pencil icon on any shortlist card to open a text editor (up to 2,000 characters). Notes are included in share links so a partner viewing your shortlist can see your thoughts.
+</Tip>
+
+## What the comparison includes
+
+### Hard facts matrix
+
+Before the AI narrative loads, Nestlyze renders a client-side comparison table covering all the dimensions that can be compared numerically. For each dimension, the winning home is highlighted in emerald with a checkmark:
+
+| Dimension | Source |
+|-----------|--------|
+| Overall score | Composite score (0–100) |
+| Price | Asking price |
+| Price per sqft | Derived from price ÷ sqft |
+| Beds | Property details |
+| Baths | Property details |
+| Square footage | Property details |
+| Lot size | Property details |
+| Year built | Property details |
+| HOA monthly | Property details |
+| Neighborhood score | Domain report (0–100) |
+| Environmental score | Domain report (0–100) |
+| Financial score | Domain report (0–100) |
+
+A win-count tally above the table shows how many dimensions each home leads in, so you get an instant quantitative read before the AI narrative loads.
+
+### AI-generated narrative summary
+
+Once the comparison runs, Nestlyze returns a natural-language summary explaining how the homes differ — not just that Home A scores higher, but why, and which differences matter for a buyer like you. The summary is a few paragraphs, not bullet points.
+
+### Dimension-by-dimension breakdown
+
+Below the summary, each named dimension (location, schools, commute, financial outlook, environmental risk, physical condition) has its own row. For each dimension, you see a short paragraph per home explaining its standing on that factor. The winning home in each dimension is marked with a "Best" badge.
+
+### Recommendation
+
+The final section gives Nestlyze's take: either a direct recommendation of one home, or an explanation of the deciding factor if the choice depends on a personal priority you'd need to supply (e.g., "Home A is the stronger financial choice; Home B is better if school rating is the priority").
+
+The recommendation also includes a **Decision factors** list — a ranked set of the considerations that most differentiate the homes, so you can validate the AI's reasoning against your own priorities.
+
+<Warning>
+The AI comparison is advisory, not a substitute for in-person tours, professional inspections, or legal review. Use it to structure your thinking, not to replace due diligence.
+</Warning>
+
+## Sharing your shortlist
+
+If you're signed in, click **Share with partner** in the top-right of the compare page. Nestlyze generates a share link and copies it to your clipboard automatically. Anyone with the link can view your shortlist and any notes you've added. The link does not give edit access.
+
+To rotate or revoke the link, return to the compare page and click Share with partner again — a new link is generated and the old one is no longer valid.
+
+## Exporting to CSV
+
+Click **Export CSV** to download your full shortlist (not just the selected homes) as a spreadsheet. The CSV includes address, composite score, price, price per sqft, beds, baths, square footage, lot size, year built, HOA, neighborhood score, environmental score, financial score, any notes, and the date saved. Useful for sharing with a financial advisor or comparing in a spreadsheet tool.
+
+<CardGroup cols={2}>
+  <Card title="AI recommendations" icon="compass" href="/features/ai-recommendations">
+    Get 24 matched homes to populate your shortlist with.
+  </Card>
+  <Card title="Property analysis" icon="file-search" href="/features/property-analysis">
+    Run a full report on any address to add it to your shortlist.
+  </Card>
+</CardGroup>
