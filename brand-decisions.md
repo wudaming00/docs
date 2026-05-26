@@ -13,7 +13,7 @@ Locked values mirror what's already in `docs.json` and were re-verified against 
 
 - `primary: "#6366f1"` — `accent.DEFAULT` (Tailwind)
 - `accent: "#7c3aed"` — violet-600, used as the gradient endpoint in `.btn-glow` and `.shimmer-text`
-- `themeMode: "dark"` — homepage `body { background-color: #0d0d10 }`, WCAG luminance ≈ 0.003 (<< 0.3 threshold). Note: docs.json keeps `appearance.default = "system"` because the product shipped a runtime light toggle (commits `1194e27`, `6fd15c7`); the lock records the product's *canonical* mode, not the docs runtime default.
+- `themeMode: "dark"` — homepage `body { background-color: #0d0d10 }`, WCAG luminance ≈ 0.003 (well under the 0.3 threshold). `docs.json` keeps `appearance.default = "system"` to honor the product's runtime light toggle (commits `1194e27`, `6fd15c7`). The lock records the product's *canonical* mode, not the docs runtime default.
 - `fontFamily.sans: "Inter"` — `font-sans` in Tailwind config
 - `fontFamily.mono: "ui-monospace"` — not set by product; falls through to Mintlify default. Recorded as the inferred value so future runs don't drift.
 - `fontWeights: [400, 500, 700]` — observed across `font-medium` / `font-semibold` / `font-bold` usage in `HomeLanding.tsx`.
