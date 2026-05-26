@@ -3,9 +3,24 @@
 Workflow run: 2026-05-26 (re-run, scheduled)
 Source-of-truth: `wudaming00/house-analyzer` (frontend Tailwind config, `index.css`, `HomeLanding.tsx`)
 
-## Re-run — 2026-05-26 (scheduled)
+## Re-run — 2026-05-26 (scheduled, lock-file backfill)
 
-**Result: no code changes.** Product brand tokens still align with docs after re-checking source-of-truth.
+**Result: writes `brand.lock.json` (previously missing); no token, CSS, or MDX changes.**
+
+Step 5 of the Brand Match Workflow requires a `brand.lock.json` at the docs project root after the first run. The initial run (PR #7) shipped tokens + decision log but did not write the lock file, so subsequent runs had no canonical anchor and were re-deriving values from the source repo each time. This run closes that gap.
+
+Locked values mirror what's already in `docs.json` and were re-verified against `wudaming00/house-analyzer@65f5bda`:
+
+- `primary: "#6366f1"` — `accent.DEFAULT` (Tailwind)
+- `accent: "#7c3aed"` — violet-600, used as the gradient endpoint in `.btn-glow` and `.shimmer-text`
+- `themeMode: "dark"` — homepage `body { background-color: #0d0d10 }`, WCAG luminance ≈ 0.003 (well under the 0.3 threshold). `docs.json` keeps `appearance.default = "system"` to honor the product's runtime light toggle (commits `1194e27`, `6fd15c7`). The lock records the product's *canonical* mode, not the docs runtime default.
+- `fontFamily.sans: "Inter"` — `font-sans` in Tailwind config
+- `fontFamily.mono: "ui-monospace"` — not set by product; falls through to Mintlify default. Recorded as the inferred value so future runs don't drift.
+- `fontWeights: [400, 500, 700]` — observed across `font-medium` / `font-semibold` / `font-bold` usage in `HomeLanding.tsx`.
+
+Per workflow spec: **these fields cannot change in future runs without `{REBRAND: true}`**.
+
+## Re-run — 2026-05-26 (scheduled, original entry)
 
 Re-verified against `wudaming00/house-analyzer` @ `65f5bda`:
 
