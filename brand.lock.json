@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "0.1",
+  "lockedAt": "2026-05-26T00:00:00Z",
+  "sourceSnapshot": {
+    "url": "https://nestlyze.com",
+    "fetchedAt": "2026-05-26T00:00:00Z",
+    "configSource": "wudaming00/house-analyzer@65f5bda — frontend/tailwind.config.js, frontend/src/index.css"
+  },
+  "primary": "#6366f1",
+  "accent": "#7c3aed",
+  "themeMode": "dark",
+  "fontFamily": {
+    "sans": "Inter",
+    "mono": "ui-monospace"
+  },
+  "fontWeights": [400, 500, 700]
+}
