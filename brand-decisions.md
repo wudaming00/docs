@@ -3,6 +3,24 @@
 Workflow run: 2026-05-26 (re-run, scheduled)
 Source-of-truth: `wudaming00/house-analyzer` (frontend Tailwind config, `index.css`, `HomeLanding.tsx`)
 
+## Re-run — 2026-05-27 (scheduled, no-op)
+
+**Result: no token, CSS, MDX, or lock changes. Audit entry only.**
+
+Source-of-truth `wudaming00/house-analyzer` is still at `65f5bda` — zero new commits since the prior re-run. All locked fields in `brand.lock.json` re-verify against the same Tailwind config and `HomeLanding.tsx` snapshots cited in earlier entries:
+
+- `primary #6366f1`, `accent #7c3aed`, `themeMode dark`, `Inter` / weights `[400, 500, 700]` — unchanged.
+- No PR-close signal to log (no closed-unmerged brand PR since last run).
+- `REBRAND` flag not set → locked fields remain canonical.
+
+Per the workflow's "document-and-defer when uncertain / no-op" pattern established in the prior re-run, this entry exists only so the scheduled run is visible in `git log` and reviewers can confirm the pipeline executed.
+
+**Watch items carried forward (unchanged from prior run):**
+- If the product promotes light-mode as the marketing default on `nestlyze.com`, reconsider docs hero backdrop for exact parity.
+- `fontFamily.mono` lock value (`ui-monospace`) still differs from product Tailwind (`JetBrains Mono`); intentionally not changed without `REBRAND` since mono is locked.
+
+---
+
 ## Re-run — 2026-05-26 (scheduled, lock-file backfill)
 
 **Result: writes `brand.lock.json` (previously missing); no token, CSS, or MDX changes.**
